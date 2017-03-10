@@ -5,19 +5,48 @@ $(document).ready(function() {
     waitForAll: true,
     finished: function() {
 
-    $('#main').show();
+            $('#loader').hide();
 
-    $('.vrl').animate({'height': "10%"}, 2000);
+	    $('#main').show();
 
-    $('.vrleven').animate({'height': "25%"}, 2000);
+	    $('.vrl').animate({'height': "48px"}, 2000);
 
-    $('.rubric').animate({'height': "312px"}, 2000, function() {
-      $('.rubricName').show();
-    });
+	    $('.vrleven').animate({'height': "88px"}, 2000);
 
-    $('#banner').animate({'width': "100%"}, 2000, function() {
-      $('#bannerText').show();
-    });
+	    $('.rubric').animate({'height': "312px"}, 2000, function() {
+	      $('.rubricName').show();
+	    });
+
+	    $('#banner').animate({width: ["toggle", "swing"]}, 2000, function() {
+	      $('#bannerText').show();
+	    });
+
+            if ($(window).width() > $(window).height()) {
+		    $('#dragon').animate({left: '+=2500', bottom: '+=500'}, 10000, function() {
+			$(this).hide();
+		    });
+	    } else {
+		    $('#dragon').animate({left: '+=1000', bottom: '+=2500'}, 10000, function() {
+			$(this).hide();
+		    });
+	    }
+
+	    // Event listener
+            $('.rubric').click(function() {
+                if ($(window).width() < 1141) {
+			$(this).parent().find('.vr').animate({height: ["toggle", "swing"]}, 'slow');
+		}
+		$(this).parent().find('ul.subdivisions').animate({
+			height: ["toggle", "swing"],
+                        width: ["toggle", "swing"]
+		}, 'slow');
+	    });
+
+	    if ($(window).width() > 1140) {
+		    $('.col-lg-4').hover(function() {
+			$(this).find('.vr').animate({height: ["toggle", "swing"]}, 'slow');
+		    });
+	    }
 
     }
 
